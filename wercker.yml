@@ -1,0 +1,21 @@
+box: cuiunige/modeling-verification
+build:
+  steps:
+    - script:
+        name: "install"
+        code: |
+          luarocks install rockspec/fun-scm-1.rockspec
+          luarocks install rockspec/hashids-scm-1.rockspec
+    - script:
+        name: "check"
+        code: |
+          luacheck src/
+    - script:
+        name: "test"
+        code: |
+          busted src/
+    - script:
+        name: "coverage"
+        code: |
+          luacov
+          colorize
